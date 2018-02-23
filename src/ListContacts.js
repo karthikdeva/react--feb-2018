@@ -44,10 +44,13 @@ class ListContacts extends Component {
                         placeholder="Search contacts"
                         value={query}
                         onChange={(event) => this.updateQuery(event.target.value)}/>
+                    <a href="#create" onClick={this.props.onCreateContact} className="add-contact">Add contact</a>
                 </div>
                 {showingContacts.length !== contacts.length && (
                     <div className="showing-contacts">
-                        <span>Now showing {showingContacts.length} of {contacts.length} total</span>
+                        <span>Now showing {showingContacts.length}
+                            of {contacts.length}
+                            total</span>
                         <button onClick={this.clearQuery}>Show all</button>
                     </div>
                 )}

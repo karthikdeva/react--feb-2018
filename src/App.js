@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import ListContacts from "./ListContacts"
+import CreateContact from "./CreateContact";
 import * as ContactsAPI from './utils/ContactsAPI'
 
 /*
@@ -13,6 +14,7 @@ import * as ContactsAPI from './utils/ContactsAPI'
 
 class App extends Component {
   state = {
+    page: "list",
     contacts: []
 
   }
@@ -31,12 +33,17 @@ class App extends Component {
     }))
     ContactsAPI.remove(contact);
   };
+  createContact = () => {
+     console.log("I'm in");
+    this.setState((state) => ({page: "create"}))
+  }
   render() {
     return (
       <div>
-        <ListContacts
+        {this.state.page === "list" && (<ListContacts
           onDeleteContact={this.removeContact}
-          contacts={this.state.contacts}/>
+          contacts={this.state.contacts} onCreateContact={this.createContact} />)}
+        {this.state.page === "create" && (<CreateContact />)}
       </div>
     );
   }
